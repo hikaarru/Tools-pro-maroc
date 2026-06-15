@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <OrderPanel />
       <Navbar />
-      <main>
+      <main className="pt-14">
         <Hero />
         <TrustStrip />
         <ProductsSection />

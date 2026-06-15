@@ -11,7 +11,7 @@ export default function Hero() {
         <div className="w-[700px] h-[700px] rounded-full bg-orange-500/8 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 w-full pt-24 pb-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 w-full pt-32 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
           {/* ── Text ────────────────────────────────────────────── */}
