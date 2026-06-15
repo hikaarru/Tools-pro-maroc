@@ -8,10 +8,12 @@ import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import StickyBar from "@/components/StickyBar";
+import OrderPanel from "@/components/OrderPanel";
 
 export default function Home() {
   return (
     <>
+      <OrderPanel />
       <Navbar />
       <main>
         <Hero />
