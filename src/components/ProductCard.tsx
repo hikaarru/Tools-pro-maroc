@@ -11,7 +11,6 @@ export default function ProductCard({ product }: { product: Product }) {
 
   const openOrder = () => {
     window.dispatchEvent(new CustomEvent("open-order", { detail: product }));
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
