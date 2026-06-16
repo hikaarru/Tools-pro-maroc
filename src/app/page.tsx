@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import OrderSection from "@/components/OrderSection";
 import TrustStrip from "@/components/TrustStrip";
 import BoxContents from "@/components/BoxContents";
 import Specs from "@/components/Specs";
@@ -20,6 +21,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <OrderSection />
         <TrustStrip />
         <BoxContents />
         <Specs />

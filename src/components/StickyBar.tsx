@@ -13,10 +13,8 @@ export default function StickyBar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const openOrder = () => {
-    window.dispatchEvent(new CustomEvent("open-order", {
-      detail: { ...product, image: product.images.hero },
-    }));
+  const scrollToForm = () => {
+    document.getElementById("commander")?.scrollIntoView({ behavior: "smooth" });
   };
 
   if (!visible) return null;
@@ -29,7 +27,7 @@ export default function StickyBar() {
           <p className="text-orange-500 font-bold text-base">{product.prix}</p>
         </div>
         <button
-          onClick={openOrder}
+          onClick={scrollToForm}
           className="bg-orange-500 text-white font-black px-5 py-3.5 rounded-xl text-sm shrink-0"
         >
           Commander

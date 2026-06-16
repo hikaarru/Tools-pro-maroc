@@ -29,7 +29,7 @@ export default function BoxContents() {
                 src={product.images.kit}
                 alt="Contenu du coffret"
                 fill
-                className="object-cover"
+                className="object-contain p-6"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>

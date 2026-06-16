@@ -34,7 +34,7 @@ export default function Gallery() {
                   src={p.src}
                   alt={p.alt}
                   fill
-                  className="object-cover group-hover:scale-[1.06] transition-transform duration-700 ease-out"
+                  className="object-contain p-3 group-hover:scale-[1.04] transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />

@@ -36,7 +36,7 @@ export default function HeroImage() {
         src={product.images.hero}
         alt={product.nom}
         fill
-        className="object-cover object-center"
+        className="object-contain p-6"
         sizes="(max-width: 1024px) 100vw, 50vw"
         priority
       />
