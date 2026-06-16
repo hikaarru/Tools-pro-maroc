@@ -1,75 +1,79 @@
 import Image from "next/image";
-import HeroImage from "./HeroImage";
+import { product } from "@/data/product";
 
 const WA = process.env.NEXT_PUBLIC_WHATSAPP ?? "212600000000";
 
 export default function Hero() {
+  const openOrder = `
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('[data-order]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            window.dispatchEvent(new CustomEvent('open-order', { detail: ${JSON.stringify({ nom: product.nom, prix: product.prix, image: product.images.hero, description: product.description, lienYoucan: product.lienYoucan, id: "hero" })} }));
+          });
+        });
+      });
+    </script>
+  `;
+  void openOrder;
+
   return (
     <section className="relative min-h-screen bg-[#0d1117] flex flex-col justify-center overflow-hidden">
-      {/* Ambient halo */}
+      {/* Halo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[700px] h-[700px] rounded-full bg-orange-500/8 blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 w-full pt-24 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          {/* ── Text ────────────────────────────────────────────── */}
+          {/* ── Text ─────────────────────────────────── */}
           <div>
-            {/* Bosch official pill */}
-            <div className="hero-in flex items-center gap-3 mb-8 flex-wrap" style={{ animationDelay: "0.05s" }}>
-              <div className="inline-flex items-center gap-2 border border-white/10 text-white/60 text-xs px-3 py-1.5 rounded-full">
+            {/* Badge + Bosch */}
+            <div className="hero-in flex flex-wrap items-center gap-3 mb-7" style={{ animationDelay: "0.05s" }}>
+              <span className="inline-flex items-center gap-2 border border-white/10 text-white/60 text-xs px-3 py-1.5 rounded-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Stock disponible · متوفر في المخزون
-              </div>
-              <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-2.5 py-1.5 rounded-full">
-                <Image src="/bosch.svg" alt="Bosch" width={40} height={13} className="h-[13px] w-auto" />
-                <span className="text-white/40 text-[10px] font-semibold tracking-wide">Distributeur officiel</span>
-              </div>
+                En stock · متوفر
+              </span>
+              {product.badge && (
+                <span className="bg-orange-500 text-white text-[11px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wide">
+                  {product.badge}
+                </span>
+              )}
             </div>
 
-            {/* Headline — line-slide */}
-            <h1 className="text-5xl sm:text-6xl font-black text-white leading-[1.05] tracking-tighter mb-4">
-              <span className="line-clip">
-                <span className="line-inner" style={{ animationDelay: "0.12s" }}>Outillage</span>
-              </span>
-              <span className="line-clip">
-                <span className="line-inner text-orange-500" style={{ animationDelay: "0.26s" }}>Bosch Pro</span>
-              </span>
-              <span className="line-clip">
-                <span className="line-inner" style={{ animationDelay: "0.40s" }}>Maroc.</span>
-              </span>
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black text-white leading-[1.05] tracking-tighter mb-3">
+              <span className="line-clip"><span className="line-inner" style={{ animationDelay: "0.10s" }}>Perceuse</span></span>
+              <span className="line-clip"><span className="line-inner text-orange-500" style={{ animationDelay: "0.22s" }}>Bosch Pro</span></span>
+              <span className="line-clip"><span className="line-inner" style={{ animationDelay: "0.34s" }}>36V Kit.</span></span>
             </h1>
 
-            {/* Arabic headline */}
-            <div className="hero-in mb-8" style={{ animationDelay: "0.48s" }}>
-              <p className="text-white/25 text-base font-semibold tracking-wide" dir="rtl">
-                أدوات بوش الاحترافية · المغرب
-              </p>
+            {/* Arabic name */}
+            <div className="hero-in mb-6" style={{ animationDelay: "0.42s" }}>
+              <p className="text-white/25 text-sm font-semibold" dir="rtl">{product.nomAr}</p>
             </div>
 
-            {/* Sub */}
-            <div className="hero-in" style={{ animationDelay: "0.54s" }}>
-              <p className="text-white/50 text-lg mb-2 max-w-sm leading-relaxed">
-                Matériel certifié, prix direct. Livré chez vous en 24&nbsp;/&nbsp;48h.
-              </p>
-              <p className="text-white/25 text-sm mb-10 max-w-sm leading-relaxed" dir="rtl">
-                معدات معتمدة، سعر مباشر. التوصيل خلال 24/48 ساعة.
-              </p>
+            {/* Description */}
+            <div className="hero-in mb-8" style={{ animationDelay: "0.48s" }}>
+              <p className="text-white/55 text-base leading-relaxed max-w-sm">{product.description}</p>
+            </div>
+
+            {/* Price */}
+            <div className="hero-in mb-8" style={{ animationDelay: "0.54s" }}>
+              <div className="flex items-baseline gap-3">
+                <span className="text-5xl font-black text-white">{product.prix}</span>
+                <span className="text-white/40 text-sm">{product.prixNote}</span>
+              </div>
             </div>
 
             {/* CTAs */}
-            <div className="hero-in flex flex-col sm:flex-row gap-3" style={{ animationDelay: "0.64s" }}>
+            <div className="hero-in flex flex-col sm:flex-row gap-3" style={{ animationDelay: "0.62s" }}>
+              <HeroOrderBtn />
               <a
-                href="#produits"
-                className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-black px-8 py-4 rounded-2xl text-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-orange-500/25"
-              >
-                Voir les produits
-              </a>
-              <a
-                href={`https://wa.me/${WA}?text=${encodeURIComponent("Bonjour, je veux commander.")}`}
+                href={`https://wa.me/${WA}?text=${encodeURIComponent("Bonjour, je veux commander : " + product.nom)}`}
                 target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-white/30 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all hover:bg-white/5"
+                className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-white/30 text-white font-bold px-7 py-4 rounded-2xl text-base transition-all hover:bg-white/5"
               >
                 <svg className="w-5 h-5 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -79,18 +83,18 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Microtrust — bilingual */}
-            <div className="hero-in flex flex-wrap gap-5 mt-10 text-sm text-white/40" style={{ animationDelay: "0.76s" }}>
+            {/* Microtrust */}
+            <div className="hero-in flex flex-wrap gap-5 mt-9 text-sm text-white/35" style={{ animationDelay: "0.72s" }}>
               <span>✓ Paiement à la livraison</span>
-              <span>✓ Garantie Bosch</span>
+              <span>✓ Garantie Bosch 1 an</span>
               <span>✓ SAV 7j/7</span>
             </div>
           </div>
 
-          {/* ── Product image + floating badges ─────────────────── */}
-          <div className="hero-in relative flex items-center justify-center h-[420px]" style={{ animationDelay: "0.20s" }}>
+          {/* ── Product image ────────────────────────── */}
+          <div className="hero-in relative flex items-center justify-center h-[440px]" style={{ animationDelay: "0.18s" }}>
             {/* Rating badge */}
-            <div className="float-a absolute top-6 right-0 bg-white rounded-2xl px-4 py-3 shadow-2xl z-20">
+            <div className="float-a absolute top-4 right-0 bg-white rounded-2xl px-4 py-3 shadow-2xl z-20">
               <div className="flex items-center gap-1 mb-0.5">
                 {[1,2,3,4,5].map(s => (
                   <svg key={s} className="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -98,13 +102,13 @@ export default function Hero() {
                   </svg>
                 ))}
               </div>
-              <div className="text-xs text-gray-500 font-medium">500+ clients</div>
+              <p className="text-xs text-gray-500 font-medium">4.9 · 500+ avis</p>
             </div>
 
             {/* Delivery badge */}
-            <div className="float-b absolute bottom-8 left-0 bg-orange-500 text-white rounded-2xl px-4 py-3 z-20">
-              <div className="font-black text-xl leading-none">24h</div>
-              <div className="text-orange-100 text-xs">Livraison</div>
+            <div className="float-b absolute bottom-6 left-0 bg-orange-500 text-white rounded-2xl px-4 py-3 z-20">
+              <p className="font-black text-xl leading-none">24h</p>
+              <p className="text-orange-100 text-xs">Livraison</p>
             </div>
 
             <HeroImage />
@@ -112,9 +116,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/30 text-xs">
-        <span>Défiler</span>
+      {/* Scroll cue */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/25 text-xs">
+        <span>Découvrir</span>
         <svg className="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7"/>
         </svg>
@@ -122,3 +126,7 @@ export default function Hero() {
     </section>
   );
 }
+
+/* ── Client sub-components ───────────────────────────────────────── */
+import HeroImage from "./HeroImage";
+import HeroOrderBtn from "./HeroOrderBtn";

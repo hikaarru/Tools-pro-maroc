@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import type { Product } from "@/data/products";
+type OrderProduct = { nom: string; prix: string; image: string; description: string; lienYoucan: string; };
 
 const WA = process.env.NEXT_PUBLIC_WHATSAPP ?? "212600000000";
 
@@ -10,14 +10,14 @@ const inputCls =
 
 export default function OrderPanel() {
   const [open, setOpen]       = useState(false);
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<OrderProduct | null>(null);
   const [done, setDone]       = useState(false);
   const [form, setForm]       = useState({ nom: "", tel: "", ville: "", adresse: "" });
   const nomRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const p = (e as CustomEvent<Product>).detail;
+      const p = (e as CustomEvent<OrderProduct>).detail;
       setProduct(p);
       setDone(false);
       setForm({ nom: "", tel: "", ville: "", adresse: "" });

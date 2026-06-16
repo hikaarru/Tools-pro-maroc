@@ -45,7 +45,9 @@ export default function Navbar() {
 
         {/* Nav links */}
         <nav className={`hidden sm:flex items-center gap-6 text-sm font-medium transition-colors ${solid ? "text-gray-500" : "text-white/60"}`}>
-          <a href="#produits" className="hover:text-orange-500 transition-colors">Produits</a>
+          <a href="#kit" className="hover:text-orange-500 transition-colors">Contenu</a>
+          <a href="#specs" className="hover:text-orange-500 transition-colors">Specs</a>
+          <a href="#faq" className="hover:text-orange-500 transition-colors">FAQ</a>
           <a href="#contact" className="hover:text-orange-500 transition-colors">Contact</a>
         </nav>
 
